@@ -11,6 +11,7 @@ def checkLoginInfo(username, password):
         for line in credentials:
             #stripping the \n
             line = line.rstrip("\n")
+            #compare the user entered logindetails with the ones on file
             if loginDetails == line:
                 sucess = True
                 break
