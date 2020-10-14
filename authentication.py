@@ -1,4 +1,5 @@
 def enterLoginInfo():
+    print("Review the submitted PDF for login details.")
     username = input("Please enter your username: ")
     password = input("Please enter your password: ")
     return username,password

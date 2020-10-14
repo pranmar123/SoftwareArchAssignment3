@@ -16,7 +16,7 @@ def main():
     ## as well as temporarily the logout function directly
     while logoutNow==0:
         pass
-        userChoice=input("Please choose an option: ")
+        userChoice=input("Please choose an option (press q to logout): ")
         logoutNow=logout.logoutUser(userChoice)
         
 main()
