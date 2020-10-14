@@ -19,4 +19,5 @@ def main():
         userChoice=input("Please choose an option (press q to logout): ")
         logoutNow=logout.logoutUser(userChoice)
         
+        
 main()
