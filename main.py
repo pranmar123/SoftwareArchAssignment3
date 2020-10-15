@@ -35,9 +35,18 @@ def main():
         elif userChoice == 1:
             for i in inventoryList:
                 i.display_inventory()
+
+        #the way that adding Items and Removing Items will work is by
+        #first doing everything locally, so ONLY in the cart we are going
+        #to modify whenever the user adds or removes something
+        #FINALLY in checkout is when we will go send the cart items to the 
+        #inventory function (UPDATE INVENTORY)
         elif userChoice == 2:
             itemToAdd = input("What item would you like to add to your cart?")
             quantityToAdd = input("How many would you like to add?")
+            item = inventory.Inventory(category="None",item=itemToAdd,price="None",count=quantityToAdd)
+            userCart.cartContents.append(item)
+
 
 
 
