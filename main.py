@@ -44,8 +44,18 @@ def main():
         elif userChoice == 2:
             itemToAdd = input("What item would you like to add to your cart?")
             quantityToAdd = input("How many would you like to add?")
+            #make this an instance of inventory item
             item = inventory.Inventory(category="None",item=itemToAdd,price="None",count=quantityToAdd)
+            #add item to the cart
             userCart.cartContents.append(item)
+        
+        elif userChoice == 3:
+            pass
+
+        elif userChoice == 4:
+            pass
+            
+        
 
 
 
