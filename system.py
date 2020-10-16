@@ -27,11 +27,38 @@ def initalizeInventory():
 
     #moving all items to a list that contains the inventory objects
     inventoryList = []
-    inventoryList.append(i1,i2,i3,i4,i5,i6,i7,i8,i9,i10,i11,i12,i13,i14,i15,i16)
+    inventoryList.extend([i1,i2,i3,i4,i5,i6,i7,i8,i9,i10,i11,i12,i13,i14,i15,i16])
     return inventoryList
 
 
-def purchase():
-    #call cardNumber function
-    #call system  inventory update
-    pass
+
+def checkout(total):
+    #these two lines handle h. and i.
+    userCardNum=input("Please enter your 10 digit OSC card number: ")
+    print(userCardNum , "\n")
+    #this line handles j. will need to be able to access calculation of cart total 
+    #and insert into parentheses below
+    print("Your total comes out to: ",total)
+    choice = input("Enter Y to confirm your purchase or any key to cancel: ")
+    if choice == "Y":
+        print("Checking out the cart. Thank you for shopping with us.")
+        return choice
+    else:
+        choice = "N"
+        print("Cancelling the purchase. Returning to menu...")
+        return choice
+
+
+def storePastPurchases(userCart,username):
+    with open("inventory.txt", "a") as inventoryfile:
+        inventoryfile.write("Username: " + username)
+        for i in userCart.cartContents:
+            lineToAdd = i.item + " " + i.count + "\n"
+            inventoryfile.write(lineToAdd)
+        inventoryfile.write("\n \n \n")
+
+def viewPastPurchases():
+    with open("inventory.txt", "r") as inventoryfile:
+        lines = inventoryfile.readlines()
+        for line in lines:
+            print(line)

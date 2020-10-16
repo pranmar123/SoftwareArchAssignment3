@@ -1,8 +1,9 @@
 import authentication
-import logout
 import system
 import inventory
 import cart
+
+
 def main():
     print("Welcome to the Online Shopping Center (OSC)")
     username, password = authentication.enterLoginInfo()
@@ -20,8 +21,6 @@ def main():
     
     #the only way this loop will break is if the user presses q
     while True:
-        userChoice=int(input("Please choose an option: "))
-        #if user wants to q then update quit to 1
         print("Enter 1 to display the inventory")
         print("Enter 2 to add items to the cart")
         print("Enter 3 to remove items from the cart")
@@ -29,10 +28,14 @@ def main():
         print("Enter 5 to checkout")
         print("Enter 6 to see past purchase history")
         print("Enter 7 to quit the program")
-
+        userChoice=int(input("Please choose an option: "))
+        #if user wants to q then update quit to 1
+        
         if userChoice == 7:
+            print("Exiting the program...")
             break
         elif userChoice == 1:
+            print("Category: \t Item: \t Price: Count: ")
             for i in inventoryList:
                 i.display_inventory()
 
@@ -42,34 +45,43 @@ def main():
         #FINALLY in checkout is when we will go send the cart items to the 
         #inventory function (UPDATE INVENTORY)
         elif userChoice == 2:
-            itemToAdd = input("What item would you like to add to your cart?")
-            quantityToAdd = input("How many would you like to add?")
-            #make this an instance of inventory item
-            item = inventory.Inventory(category="None",item=itemToAdd,price="None",count=quantityToAdd)
-            #add item to the cart
-            userCart.cartContents.append(item)
+            userCart = cart.addItemToCart(userCart)
+            total = cart.calculateRunningTotal(userCart, inventoryList)
+            print("The current total of the cart is: $",total)
         
         elif userChoice == 3:
-            pass
+            userCart = cart.removeItemFromCart(userCart)
+            total = cart.calculateRunningTotal(userCart, inventoryList)
+            print("The current total of the cart is: $",total)
 
         elif userChoice == 4:
-            pass
+            total = cart.calculateRunningTotal(userCart, inventoryList)
+            print("The current total of the cart is: $",total)
+
+        elif userChoice == 5:
+            confirm = system.checkout(total)
+            if confirm == "Y":    
+            #update inventory
+                for i in userCart.cartContents:
+                    for j in inventoryList:
+                        if i.item == j.item:
+                            j.update_inventory(i.count)
+                #dispaly updated inventory
+                print("Printing updated inventory...")
+                print("Category: \t Item: \t Price: Count: ")
+                for i in inventoryList:
+                    i.display_inventory()
+                #store past purchases
+                system.storePastPurchases(userCart,username)
+                #reset cart
+                userCart.cartContents = []
+            else:
+                pass
+
+        elif userChoice == 6:
+            system.viewPastPurchases()
+
             
-        
-
-
-
-
-
-    
-    ## below is the start of idea on how to handle code going forward 
-    ## as well as temporarily the logout function directly
-    
-    #while logoutNow==0:
-        
-    #    userChoice=input("Please choose an option (press q to logout): ")
-
-    #    logoutNow=logout.logoutUser(userChoice)
     
         
 main()
