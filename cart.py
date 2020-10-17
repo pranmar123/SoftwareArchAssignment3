@@ -30,7 +30,7 @@ def removeItemFromCart(userCart):
     else:
         print("Item not found in the cart...")
         return userCart
-
+# Calculates the cart total
 def calculateRunningTotal(userCart,inventoryList):
     total = 0.00
     for i in userCart.cartContents:
