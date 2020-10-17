@@ -50,7 +50,7 @@ def checkout(total):
 
 
 def storePastPurchases(userCart,username):
-    with open("inventory.txt", "a") as inventoryfile:
+    with open("PastPurchases.txt", "a") as inventoryfile:
         inventoryfile.write("Username: " + username)
         for i in userCart.cartContents:
             lineToAdd = i.item + " " + i.count + "\n"
@@ -58,7 +58,7 @@ def storePastPurchases(userCart,username):
         inventoryfile.write("\n \n \n")
 
 def viewPastPurchases():
-    with open("inventory.txt", "r") as inventoryfile:
+    with open("PastPurchases.txt", "r") as inventoryfile:
         lines = inventoryfile.readlines()
         for line in lines:
             print(line)
