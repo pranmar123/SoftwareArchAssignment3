@@ -13,7 +13,7 @@ class Cart:
 
 def addItemToCart(userCart):
     itemToAdd = input("What item would you like to add to your cart?: ")
-    quantityToAdd = input("How many would you like to add?: ")
+    quantityToAdd = input("How many would you like to add? (Please use the EXACT name of the item): ")
     #make this an instance of inventory item
     item = inventory.Inventory(category="None",item=itemToAdd,price="None",count=quantityToAdd)
     #add item to the cart
@@ -21,7 +21,7 @@ def addItemToCart(userCart):
     return userCart
 
 def removeItemFromCart(userCart):
-    itemToRemove = input("What item would you like to remove to your cart? (this will remove all quanitites of the item in cart): ")
+    itemToRemove = input("What item would you like to remove to your cart? (Plese use the EXACT name of the item) (this will remove all quanitites of the item in cart): ")
     #remove the said item
     for i in userCart.cartContents:
         if i.item == itemToRemove:
@@ -30,7 +30,7 @@ def removeItemFromCart(userCart):
     else:
         print("Item not found in the cart...")
         return userCart
-# Calculates the cart total
+
 def calculateRunningTotal(userCart,inventoryList):
     total = 0.00
     for i in userCart.cartContents:
