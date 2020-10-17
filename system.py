@@ -5,6 +5,8 @@
 import inventory
 
 def initalizeInventory():
+    with open("inventory.txt", "r") as inventoryfile:
+        pass
     i1 = inventory.Inventory("Household Goods", "Lamp", "30.99", "10")
     i2 = inventory.Inventory("Household Goods", "Broom", "8.99", "20")
     i3 = inventory.Inventory("Household Goods", "Chair", "45.99", "30")
